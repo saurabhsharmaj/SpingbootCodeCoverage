@@ -1,12 +1,13 @@
 package com.example.codecoverage;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -20,6 +21,7 @@ public class TestUserService {
 	@Mock
     private UserRepository userRepository;
 
+	@InjectMocks
     UserService userService;
     
     @BeforeEach
@@ -34,8 +36,8 @@ public class TestUserService {
         user.setLastName("karim");
 
         when(userRepository.save(any(User.class))).thenReturn(user);
-        User savedUser = userRepository.save(user);
-        assertThat(savedUser.getFirstName()).isNotNull();
+        User savedUser = userService.saveUser(user);
+        assertEquals(user, savedUser);
     }
 
 }
