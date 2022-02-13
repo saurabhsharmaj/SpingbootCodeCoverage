@@ -60,13 +60,13 @@ public class TestUserRepository {
             }
         });
 
-        assertThat(validIdFound.intValue()).isEqualTo(3);
+        assertThat(validIdFound.intValue()).isEqualTo(4);
 	}
 	
 	@Test
 	void deleteUser_success() {
 		 repository.deleteById(101);
-		 assertThat(repository.count()).isEqualTo(1);
+		 assertThat(repository.count()).isEqualTo(0);
 	}
 	
 	@Test
